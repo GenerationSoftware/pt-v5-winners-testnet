@@ -49,14 +49,9 @@ jobs:
           npm install
           ls
           npm run build
-          cd sol
-          forge install
-          forge build
-          cd ..
           echo $DATA > example-input.json
           cat example-input.json
-          node index.js example-input.json example-output.json
-          cat example-output.json
+          
 
   
 
