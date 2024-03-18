@@ -27,8 +27,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       
-      - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+      # - name: Install Foundry
+      #   uses: foundry-rs/foundry-toolchain@v1
 
       - name: Clone foundry-winner-calc repo
         uses: actions/checkout@master
@@ -55,15 +55,15 @@ jobs:
           run_command: ptv5 compute vaultAccounts -o ./vaultAccounts -p 0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1 -c 11155420
 
       # 3. Install package deps, build contracts
-      - name: Install deps and compile
-        run: |
-          cd ./foundry-winner-calc
-          npm install
-          npm run build
-          cd sol
-          forge install
-          forge build
-          cd ..
+      # - name: Install deps and compile
+      #   run: |
+      #     cd ./foundry-winner-calc
+      #     npm install
+      #     npm run build
+      #     cd sol
+      #     forge install
+      #     forge build
+      #     cd ..
 
       # 4. Loop through vault input files, compute winners
       - name: Iterate vaults
