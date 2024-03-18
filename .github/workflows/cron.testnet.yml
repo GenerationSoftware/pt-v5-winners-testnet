@@ -43,14 +43,14 @@ jobs:
         run: ls
 
       - name: Clone foundry-winner-calc repo
-        uses: actions/checkout@master
-        with:
-          repository: GenerationSoftware/foundry-winner-calc
-          ref: refs/heads/main
-      - run: 
-        node --version |
-        ls |
-        npm install
+        - uses: actions/checkout@master
+          with:
+            repository: GenerationSoftware/foundry-winner-calc
+            ref: refs/heads/main
+        - run: |
+          node --version
+          ls 
+          npm install
 
       # - name: Install Dependencies
       #   uses: bahmutov/npm-install@v1
