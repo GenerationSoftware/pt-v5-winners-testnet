@@ -41,12 +41,12 @@ jobs:
           npm install
           ls
           npm run build
+          echo '{ "chainId": 11155420, "prizePoolAddress": "0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1", "vaultAddress": "0x13e37b0ca8b48fc2818c177c24635f90c1495c5c", "userAddresses": [ "0xf3cb831e7574f29619ede95587464bc970b7b9cc", "0x1169333d6c2f5bb5e3f8a1c075bc4d068e5ea41e", "0xe0e7b7c5ae92fe94d2ae677d81214d6ad7a11c27", "0x6ff7639052B97965875F51aDed19Bce0EAdb1214" ] }' > example-input.json
+          cat example-input.json
           cd sol
           forge install
           forge build
           cd ..
-          echo '{ "chainId": 11155420, "prizePoolAddress": "0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1", "vaultAddress": "0x13e37b0ca8b48fc2818c177c24635f90c1495c5c", "userAddresses": [ "0xf3cb831e7574f29619ede95587464bc970b7b9cc", "0x1169333d6c2f5bb5e3f8a1c075bc4d068e5ea41e", "0xe0e7b7c5ae92fe94d2ae677d81214d6ad7a11c27", "0x6ff7639052B97965875F51aDed19Bce0EAdb1214" ] }' > example-input.json
-          cat example-input.json
           node index.js example-input.json example-output.json
           cat example-output.json
 
