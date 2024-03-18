@@ -45,7 +45,7 @@ jobs:
         run: |
           cd ./foundry-winner-calc
           ls
-          echo "${{secrets.DATA}" > example-input.json
+          echo "${{secrets.DATA}}" > example-input.json
           echo 'wreote'
           ls
           cat example-input.json
