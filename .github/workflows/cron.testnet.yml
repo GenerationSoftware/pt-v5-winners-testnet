@@ -66,16 +66,20 @@ jobs:
       #     cd ..
 
       # 4. Loop through vault input files, compute winners
-      - name: Iterate vaults
+      - name: Finding files
+        id: finding-files
+        working-directory: ./foundry-winner-calc
         run: |
-          cd ./foundry-winner-calc
-          ls
-          ls ./vaultAccounts
           {
             echo 'FILELIST<<EOF'
             find ./vaultAccounts -type f -name '0x*.json' -print
             echo EOF
           } >> "$GITHUB_ENV"
+      - name: Iterate vaults
+        working-directory: ./foundry-winner-calc
+        run: |
+          ls
+          ls ./vaultAccounts
           for i in $FILELIST; do
             echo "Do something with file ${i}"
           done
