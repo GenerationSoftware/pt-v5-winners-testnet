@@ -35,42 +35,45 @@ jobs:
         with:
           repository: GenerationSoftware/foundry-winner-calc
           path: './foundry-winner-calc'
+
+      # -------------------------------------------------------- #
+      # Optimism Sepolia
+      # -------------------------------------------------------- #
+      # 1. Install
+      - name: Install PoolTogether V5 CLI
+        run: |
+          npm install -g @generationsoftware/pt-v5-cli@1.1.0-beta.2
+          echo "$(npm -g bin)" >> $GITHUB_PATH
+          
+      # 2. Compute JSON input files (vault accounts)
+      - name: Optimism Sepolia Vault Accounts
+        id: vaultAccountsOptimismSepolia
+        uses: chuckbergeron/executable-wrapper@f94b435740d6b958c2d7eb76c77657e761819cfe
+        continue-on-error: true
+        with:
+          run_command: ptv5 compute vaultAccounts -o ./vaultAccounts -p 0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1 -c 11155420
+
+      # 3. Install package deps, build contracts
       - name: Install deps and run
         run: |
           cd ./foundry-winner-calc
           npm install
-          ls
           npm run build
-          echo '{ "chainId": 11155420, "prizePoolAddress": "0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1", "vaultAddress": "0x13e37b0ca8b48fc2818c177c24635f90c1495c5c", "userAddresses": [ "0xf3cb831e7574f29619ede95587464bc970b7b9cc", "0x1169333d6c2f5bb5e3f8a1c075bc4d068e5ea41e", "0xe0e7b7c5ae92fe94d2ae677d81214d6ad7a11c27", "0x6ff7639052B97965875F51aDed19Bce0EAdb1214" ] }' > example-input.json
-          cat example-input.json
           cd sol
           forge install
           forge build
           cd ..
-          node index.js example-input.json example-output.json
+
+      # 4. Loop through vault input files, compute winners
+      - name: Install deps and run
+        run: |
+          ls
+          node index.js ./vaultAccounts/id.json ./vaultAccountOutputs/id.json
           cat example-output.json
 
-
-  
-
-      # # -------------------------------------------------------- #
-      # # Optimism Sepolia
-      # # -------------------------------------------------------- #
-      # # 1. Install
-      # - name: Install PoolTogether V5 CLI
-      #   run: |
-      #     npm install -g @generationsoftware/pt-v5-cli@1.1.0-beta.2
-      #     echo "$(npm -g bin)" >> $GITHUB_PATH
-      # # 2. Compute
-      # - name: Optimism Sepolia Draw Prizes
-      #   id: drawPrizesOptimismSepolia
-      #   uses: chuckbergeron/executable-wrapper@f94b435740d6b958c2d7eb76c77657e761819cfe
-      #   continue-on-error: true
-      #   with:
-      #     run_command: ptv5 compute drawPrizes -o ./prizes -p 0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1 -c 11155420
-      # # 3. Commit
+      # # 5. Commit
       # - name: Commit Optimism Sepolia
-      #   if: steps.drawPrizesOptimismSepolia.outputs.runStatus == 'true'
+      #   if: steps.vaultAccounts.outputs.runStatus == 'true'
       #   continue-on-error: true
       #   run: |
       #     git config pull.rebase false
@@ -78,11 +81,11 @@ jobs:
       #     git config --local user.name "github-actions[bot]"
       #     git pull
       #     git add ./prizes/11155420
-      #     git commit -m "Add testnet draw for Optimism Sepolia draw #${{steps.drawPrizesOptimismSepolia.outputs.drawId}}"
+      #     git commit -m "Add testnet draw for Optimism Sepolia draw #${{steps.vaultAccounts.outputs.drawId}}"
       # # 4. Push
       # - name: Push changes (if required)
       #   uses: ad-m/github-push-action@master
-      #   if: steps.drawPrizesOptimismSepolia.outputs.runStatus == 'true'
+      #   if: steps.vaultAccounts.outputs.runStatus == 'true'
       #   with:
       #     github_token: ${{ secrets.GITHUB_TOKEN }}
       #     branch: ${{ github.ref }}
@@ -92,8 +95,8 @@ jobs:
       # # -------------------------------------------------------- #
       # - name: Comment Error
       #   id: commentError
-      #   if: steps.drawPrizesOptimismSepolia.outputs.exitcode == 1
-      #   # if: steps.drawPrizesArbitrumSepolia.outputs.exitcode == 1 || steps.drawPrizesOptimismSepolia.outputs.exitcode == 1
+      #   if: steps.vaultAccounts.outputs.exitcode == 1
+      #   # if: steps.winnersArbitrumSepolia.outputs.exitcode == 1 || steps.vaultAccounts.outputs.exitcode == 1
       #   uses: actions/github-script@v5
       #   continue-on-error: true
       #   with:
