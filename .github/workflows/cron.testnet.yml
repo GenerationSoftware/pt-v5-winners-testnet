@@ -79,8 +79,7 @@ jobs:
           for i in $FILELIST; do
             echo "Do something with file ${i}"
           done
-          node index.js ./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1/draw/${{steps.vaultAccounts.outputs.drawId}}/id.json ./vaultAccountOutputs/11155420/0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1/draw/${{steps.vaultAccounts.outputs.drawId}}/id.json
-          cat example-output.json
+          
 
       # # 5. Commit
       # - name: Commit Optimism Sepolia
