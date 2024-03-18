@@ -86,7 +86,7 @@ jobs:
             echo "Processing: ${i}"
             node index.js ${i} ../vaultAccountOutputs/${i}
           done
-          
+          ls ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63
 
       # # 5. Commit
       # - name: Commit Optimism Sepolia
