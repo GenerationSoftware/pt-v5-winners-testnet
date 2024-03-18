@@ -67,7 +67,9 @@ jobs:
       # 4. Loop through vault input files, compute winners
       - name: Install deps and run
         run: |
+          cd ./foundry-winner-calc
           ls
+          ls ./vaultAccounts
           node index.js ./vaultAccounts/id.json ./vaultAccountOutputs/id.json
           cat example-output.json
 
