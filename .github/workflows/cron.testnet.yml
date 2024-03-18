@@ -42,12 +42,11 @@ jobs:
           repository: GenerationSoftware/foundry-winner-calc
           path: './foundry-winner-calc'
       - name: Install deps and run
-        # env:
-        #   DATA: ${{ steps.release.outputs.data }}
         run: |
           cd ./foundry-winner-calc
           ls
-          echo $DATA > example-input.json
+          echo "${{secrets.DATA}" > example-input.json
+          echo 'wreote'
           ls
           cat example-input.json
           
