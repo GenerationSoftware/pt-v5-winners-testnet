@@ -23,13 +23,16 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-
-      - name: Checkout foundry-winner-calc
+      - name: Clone foundry-winner-calc repo
         uses: actions/checkout@master
         with:
           repository: GenerationSoftware/foundry-winner-calc
           ref: refs/heads/main
-
+      - name: Install Foundry
+        working-directory: ./foundry-winner-calc
+        run: |
+          curl -L https://foundry.paradigm.xyz | bash
+          foundryup
       
       - name: Install Dependencies
         id: installDependencies
