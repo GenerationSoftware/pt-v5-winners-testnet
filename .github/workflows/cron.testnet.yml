@@ -30,12 +30,6 @@ jobs:
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
 
-      # - name: Run tests
-      #   run: forge test -vvv
-
-      # - name: Run snapshot
-      #   run: forge snapshot
-
       - name: Clone foundry-winner-calc repo
         uses: actions/checkout@master
         with:
@@ -44,12 +38,18 @@ jobs:
       - name: Install deps and run
         run: |
           cd ./foundry-winner-calc
+          npm install
           ls
+          npm run build
+          cd sol
+          forge install
+          forge build
+          cd ..
           echo "${{secrets.DATA}}" > example-input.json
-          echo 'wreote'
-          ls
           cat example-input.json
-          
+          node index.js example-input.json example-output.json
+          cat example-output.json
+
 
   
 
