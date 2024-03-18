@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          submodules: recursive
       - name: Use Node ${{ matrix.node }}
         uses: actions/setup-node@v3
         with:
@@ -28,11 +30,19 @@ jobs:
         with:
           repository: GenerationSoftware/foundry-winner-calc
           ref: refs/heads/main
+      
+      # - uses: actions/checkout@v3
+      #   with:
+      #     submodules: recursive
+
       - name: Install Foundry
-        working-directory: ./foundry-winner-calc
-        run: |
-          curl -L https://foundry.paradigm.xyz | bash
-          foundryup
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Run tests
+        run: forge test -vvv
+
+      - name: Run snapshot
+        run: forge snapshot
       
       - name: Install Dependencies
         id: installDependencies
