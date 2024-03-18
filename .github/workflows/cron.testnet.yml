@@ -44,9 +44,16 @@ jobs:
       - name: Run snapshot
         run: forge snapshot
       
+      - name: ls dir
+        run: ls
+      
       - name: Install Dependencies
         uses: bahmutov/npm-install@v1
-        working-directory: ./foundry-winner-calc
+        with:
+          working-directory: ./foundry-winner-calc
+
+      - name: Main
+        run: node scripts/setup-npm-version.js
         # with:
         #   install-command: yarn
       # # -------------------------------------------------------- #
