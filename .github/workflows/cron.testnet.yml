@@ -25,11 +25,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
-      - name: Clone foundry-winner-calc repo
-        uses: actions/checkout@master
-        with:
-          repository: GenerationSoftware/foundry-winner-calc
-          ref: refs/heads/main
       
       # - uses: actions/checkout@v3
       #   with:
@@ -46,14 +41,23 @@ jobs:
       
       - name: ls dir
         run: ls
-      
-      - name: Install Dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          working-directory: ./foundry-winner-calc
 
-      - name: Main
-        run: node scripts/setup-npm-version.js
+      - name: Clone foundry-winner-calc repo
+        uses: actions/checkout@master
+        with:
+          repository: GenerationSoftware/foundry-winner-calc
+          ref: refs/heads/main
+        run: node --version
+        run: ls
+        run: npm install
+
+      # - name: Install Dependencies
+      #   uses: bahmutov/npm-install@v1
+      #   with:
+      #     working-directory: ./foundry-winner-calc
+
+      # - name: Main
+      #   run: node scripts/setup-npm-version.js
         # with:
         #   install-command: yarn
       # # -------------------------------------------------------- #
