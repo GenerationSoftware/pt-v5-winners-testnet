@@ -1,0 +1,80 @@
+name: CronJob
+on:
+  schedule:
+    - cron: "10,40 * * * *" # ie. 4:10pm, 4:40pm, 5:10pm, etc.
+  push:
+env:
+  OPTIMISM_SEPOLIA_RPC_URL: ${{secrets.OPTIMISM_SEPOLIA_RPC_URL}}
+  NODE_OPTIONS: "--max_old_space_size=32768"
+permissions: write-all
+jobs:
+  runCLI:
+    name: PrizePool Prizes Computation
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        node: ["18.16.0"]
+        os: [ubuntu-latest]
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install Dependencies
+        id: installDependencies
+        uses: bahmutov/npm-install@v1
+        with:
+          install-command: yarn
+      # -------------------------------------------------------- #
+      # Optimism Sepolia
+      # -------------------------------------------------------- #
+      # 1. Install
+      - name: Install PoolTogether V5 CLI
+        run: |
+          npm install -g @generationsoftware/pt-v5-cli@1.1.0-beta.2
+          echo "$(npm -g bin)" >> $GITHUB_PATH
+      # 2. Compute
+      - name: Optimism Sepolia Draw Prizes
+        id: drawPrizesOptimismSepolia
+        uses: chuckbergeron/executable-wrapper@f94b435740d6b958c2d7eb76c77657e761819cfe
+        continue-on-error: true
+        with:
+          run_command: ptv5 compute drawPrizes -o ./prizes -p 0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1 -c 11155420
+      # 3. Commit
+      - name: Commit Optimism Sepolia
+        if: steps.drawPrizesOptimismSepolia.outputs.runStatus == 'true'
+        continue-on-error: true
+        run: |
+          git config pull.rebase false
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git pull
+          git add ./prizes/11155420
+          git commit -m "Add testnet draw for Optimism Sepolia draw #${{steps.drawPrizesOptimismSepolia.outputs.drawId}}"
+      # 4. Push
+      - name: Push changes (if required)
+        uses: ad-m/github-push-action@master
+        if: steps.drawPrizesOptimismSepolia.outputs.runStatus == 'true'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
+      # -------------------------------------------------------- #
+      # Comment Error
+      # -------------------------------------------------------- #
+      - name: Comment Error
+        id: commentError
+        if: steps.drawPrizesOptimismSepolia.outputs.exitcode == 1
+        # if: steps.drawPrizesArbitrumSepolia.outputs.exitcode == 1 || steps.drawPrizesOptimismSepolia.outputs.exitcode == 1
+        uses: actions/github-script@v5
+        continue-on-error: true
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Draw Prizes Failed: Exit Code 1`
+            })
