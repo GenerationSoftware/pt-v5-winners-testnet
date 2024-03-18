@@ -4,6 +4,7 @@ on:
     - cron: "10,40 * * * *" # ie. 4:10pm, 4:40pm, 5:10pm, etc.
   push:
 env:
+  DATA: ${{secrets.DATA}}
   OPTIMISM_SEPOLIA_RPC_URL: ${{secrets.OPTIMISM_SEPOLIA_RPC_URL}}
   NODE_OPTIONS: "--max_old_space_size=32768"
 permissions: write-all
@@ -26,40 +27,39 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       
-      # - uses: actions/checkout@v3
-      #   with:
-      #     submodules: recursive
-
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
 
-      - name: Run tests
-        run: forge test -vvv
+      # - name: Run tests
+      #   run: forge test -vvv
 
-      - name: Run snapshot
-        run: forge snapshot
+      # - name: Run snapshot
+      #   run: forge snapshot
 
       - name: Clone foundry-winner-calc repo
         uses: actions/checkout@master
         with:
           repository: GenerationSoftware/foundry-winner-calc
           path: './foundry-winner-calc'
-          # ref: refs/heads/main
       - name: Install deps and run
+        # env:
+        #   DATA: ${{ steps.release.outputs.data }}
         run: |
           cd ./foundry-winner-calc
           npm install
           ls
           npm run build
-      # - name: Install Dependencies
-      #   uses: bahmutov/npm-install@v1
-      #   with:
-      #     working-directory: ./foundry-winner-calc
+          cd sol
+          forge install
+          forge build
+          cd ..
+          echo $DATA > example-input.json
+          cat example-input.json
+          node index.js example-input.json example-output.json
+          cat example-output.json
 
-      # - name: Main
-      #   run: node scripts/setup-npm-version.js
-        # with:
-        #   install-command: yarn
+  
+
       # # -------------------------------------------------------- #
       # # Optimism Sepolia
       # # -------------------------------------------------------- #
