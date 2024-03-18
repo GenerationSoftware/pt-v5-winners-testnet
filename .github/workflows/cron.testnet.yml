@@ -67,7 +67,6 @@ jobs:
 
       # 4. Store list of input JSON files in variable
       - name: Finding files
-        id: finding-files
         working-directory: ./foundry-winner-calc
         run: |
           {
@@ -78,10 +77,9 @@ jobs:
       
       # 5. Loop through vault input files, compute winners
       - name: Iterate vaults
+        id: processVaults
         working-directory: ./foundry-winner-calc
         run: |
-          ls
-          ls ./vaultAccounts
           for i in $FILELIST; do
             echo "Processing: ${i}"
             node index.js ${i} ../vaultAccountOutputs/${i}
@@ -92,37 +90,33 @@ jobs:
           cat ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0x35f65c81b332ed0cdce72e841db4384bc12f8326.json
 
       # # 5. Commit
-      # - name: Commit Optimism Sepolia
-      #   if: steps.vaultAccounts.outputs.runStatus == 'true'
-      #   continue-on-error: true
-      #   run: |
-      #     git config pull.rebase false
-      #     git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      #     git config --local user.name "github-actions[bot]"
-      #     git pull
-      #     git add ./prizes/11155420
-      #     git commit -m "Add testnet draw for Optimism Sepolia draw #${{steps.vaultAccounts.outputs.drawId}}"
+      - name: Commit Optimism Sepolia
+        if: steps.processVaults.outputs.runStatus == 'true'
+        continue-on-error: true
+        run: |
+          git config pull.rebase false
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git pull
+          git add ./vaultAccounts
+          git commit -m "Add testnet winner results for Optimism Sepolia draw #${{steps.vaultAccounts.outputs.drawId}}"
       # # 4. Push
-      # - name: Push changes (if required)
-      #   uses: ad-m/github-push-action@master
-      #   if: steps.vaultAccounts.outputs.runStatus == 'true'
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     branch: ${{ github.ref }}
-      #     force: true
-      # # -------------------------------------------------------- #
-      # # Comment Error
-      # # -------------------------------------------------------- #
-      # - name: Comment Error
-      #   id: commentError
-      #   if: steps.vaultAccounts.outputs.exitcode == 1
-      #   # if: steps.winnersArbitrumSepolia.outputs.exitcode == 1 || steps.vaultAccounts.outputs.exitcode == 1
-      #   uses: actions/github-script@v5
-      #   continue-on-error: true
-      #   with:
-      #     script: |
-      #       await github.rest.issues.create({
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         title: `Draw Prizes Failed: Exit Code 1`
-      #       })
+      - name: Push changes (if required)
+        uses: ad-m/github-push-action@master
+        if: steps.processVaults.outputs.runStatus == 'true'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          force: true
+      - name: Comment Error
+        id: commentError
+        if: steps.processVaults.outputs.exitcode == 1
+        uses: actions/github-script@v5
+        continue-on-error: true
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Draw #${{steps.vaultAccounts.outputs.drawId}} Winner Calc Failed: Exit Code 1`
+            })
