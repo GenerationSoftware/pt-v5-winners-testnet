@@ -46,10 +46,9 @@ jobs:
         #   DATA: ${{ steps.release.outputs.data }}
         run: |
           cd ./foundry-winner-calc
-          npm install
           ls
-          npm run build
           echo $DATA > example-input.json
+          ls
           cat example-input.json
           
 
