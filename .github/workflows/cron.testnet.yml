@@ -27,7 +27,7 @@ jobs:
       - name: Checkout foundry-winner-calc
         uses: actions/checkout@master
         with:
-          name: GenerationSoftware/foundry-winner-calc
+          repository: GenerationSoftware/foundry-winner-calc
           ref: refs/heads/main
 
       
