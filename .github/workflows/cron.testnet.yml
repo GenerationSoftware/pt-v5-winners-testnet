@@ -71,7 +71,15 @@ jobs:
           cd ./foundry-winner-calc
           ls
           ls ./vaultAccounts
-          node index.js ./vaultAccounts/id.json ./vaultAccountOutputs/id.json
+          {
+            echo 'FILELIST<<EOF'
+            find ./vaultAccounts -type f -name '0x*.json' -print
+            echo EOF
+          } >> "$GITHUB_ENV"
+          for i in $FILELIST; do
+            echo "Do something with file ${i}"
+          done
+          node index.js ./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1/draw/${{steps.vaultAccounts.outputs.drawId}}/id.json ./vaultAccountOutputs/11155420/0x5e1b40e4249644a7d7589d1197AD0F1628e79FB1/draw/${{steps.vaultAccounts.outputs.drawId}}/id.json
           cat example-output.json
 
       # # 5. Commit
