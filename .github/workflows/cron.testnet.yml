@@ -47,9 +47,10 @@ jobs:
         with:
           repository: GenerationSoftware/foundry-winner-calc
           ref: refs/heads/main
-        run: node --version
-        run: ls
-        run: npm install
+      - run: 
+        node --version |
+        ls |
+        npm install
 
       # - name: Install Dependencies
       #   uses: bahmutov/npm-install@v1
