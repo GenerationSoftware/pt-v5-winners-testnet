@@ -89,9 +89,9 @@ jobs:
           cat ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0xd96702995b2bbd78a9a39ef86f4fa5f9704fdc7d.json
           cat ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0x35f65c81b332ed0cdce72e841db4384bc12f8326.json
 
-      # # 5. Commit
+      # 6. Commit
       - name: Commit Optimism Sepolia
-        if: steps.processVaults.outputs.runStatus == 'true'
+        if: steps.vaultAccountsOptimismSepolia.outputs.runStatus == 'true'
         continue-on-error: true
         run: |
           git config pull.rebase false
@@ -99,18 +99,19 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git pull
           git add ./vaultAccounts
-          git commit -m "Add testnet winner results for Optimism Sepolia draw #${{steps.vaultAccounts.outputs.drawId}}"
-      # # 4. Push
+          git commit -m "Add testnet winner results for Optimism Sepolia draw #${{steps.vaultAccountsOptimismSepolia.outputs.drawId}}"
+      # 7. Push
       - name: Push changes (if required)
         uses: ad-m/github-push-action@master
-        if: steps.processVaults.outputs.runStatus == 'true'
+        if: steps.vaultAccountsOptimismSepolia.outputs.runStatus == 'true'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
           force: true
+      # Optionally:
       - name: Comment Error
         id: commentError
-        if: steps.processVaults.outputs.exitcode == 1
+        if: steps.vaultAccountsOptimismSepolia.outputs.exitcode == 1
         uses: actions/github-script@v5
         continue-on-error: true
         with:
@@ -118,5 +119,5 @@ jobs:
             await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: `Draw #${{steps.vaultAccounts.outputs.drawId}} Winner Calc Failed: Exit Code 1`
+              title: `Draw #${{steps.vaultAccountsOptimismSepolia.outputs.drawId}} Winner Calc Failed: Exit Code 1`
             })
