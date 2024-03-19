@@ -4,8 +4,7 @@ on:
     - cron: "10,40 * * * *" # ie. 4:10pm, 4:40pm, 5:10pm, etc.
   push:
 env:
-  DATA: ${{secrets.DATA}}
-  OPTIMISM_SEPOLIA_RPC_URL: ${{secrets.OPTIMISM_SEPOLIA_RPC_URL}}
+  FWC_RPC_URL: ${{secrets.OPTIMISM_SEPOLIA_RPC_URL}}
   NODE_OPTIONS: "--max_old_space_size=32768"
 permissions: write-all
 jobs:
