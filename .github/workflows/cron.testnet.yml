@@ -82,12 +82,12 @@ jobs:
         run: |
           for i in $FILELIST; do
             echo "Processing: ${i}"
-            node index.js ${i} ../vaultAccountOutputs/${i}
+            node index.js ${i} ../winners/${i}
           done
-          ls ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63
-          cat ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0x98ced5d595e8981756f063db8d3c44a6be9a8f86.json
-          cat ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0xd96702995b2bbd78a9a39ef86f4fa5f9704fdc7d.json
-          cat ../vaultAccountOutputs/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0x35f65c81b332ed0cdce72e841db4384bc12f8326.json
+          ls ../winners/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63
+          cat ../winners/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0x98ced5d595e8981756f063db8d3c44a6be9a8f86.json
+          cat ../winners/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0xd96702995b2bbd78a9a39ef86f4fa5f9704fdc7d.json
+          cat ../winners/./vaultAccounts/11155420/0x5e1b40e4249644a7d7589d1197ad0f1628e79fb1/draw/63/0x35f65c81b332ed0cdce72e841db4384bc12f8326.json
 
       # 6. Commit
       - name: Commit Optimism Sepolia
@@ -98,7 +98,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git pull
-          git add ./vaultAccounts
+          git add ./winners
           git commit -m "Add testnet winner results for Optimism Sepolia draw #${{steps.vaultAccountsOptimismSepolia.outputs.drawId}}"
       # 7. Push
       - name: Push changes (if required)
