@@ -52,7 +52,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ./foundry-winner-calc
-          run_command: ptv5 compute vaultAccounts -o ./vaultAccounts -p 0x595806bc53dd4be760ebbe63d78931a3601aa04b -c 11155420
+          run_command: ptv5 utils vaultAccounts -o ./vaultAccounts -p 0x595806bc53dd4be760ebbe63d78931a3601aa04b -c 11155420
 
       # 3. Install package deps, build contracts
       - name: Install deps and compile
