@@ -1,16 +1,7 @@
 {
-  "status": "FAILURE",
-  "createdAt": 1712060278933,
-  "updatedAt": 1712060279344,
+  "status": "SUCCESS",
+  "createdAt": 1712062064012,
+  "updatedAt": 1712062064431,
   "runtime": 1,
-  "error": {
-    "response": {
-      "error": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n<script src=\"/cdn-cgi/apps/head/a-7iaLT0SRdb_kvxGKIYLrjkGzU.js\"></script></head>\n<body>\n<pre>Error: connect ECONNREFUSED 10.0.14.157:80<br> &nbsp; &nbsp;at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1571:16)</pre>\n</body>\n</html>\n",
-      "status": 500,
-      "headers": {}
-    },
-    "request": {
-      "query": "\n    {\n      prizeVaults {\n        id\n      }\n    }\n  "
-    }
-  }
+  "meta": {}
 }
