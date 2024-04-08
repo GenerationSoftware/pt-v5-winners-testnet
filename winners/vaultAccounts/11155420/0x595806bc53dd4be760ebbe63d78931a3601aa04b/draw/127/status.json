@@ -1,0 +1,22 @@
+{
+  "status": "FAILURE",
+  "createdAt": 1712583865847,
+  "updatedAt": 1712583868720,
+  "runtime": 3,
+  "error": {
+    "response": {
+      "error": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n<title>Error</title>\n<script src=\"/cdn-cgi/apps/head/a-7iaLT0SRdb_kvxGKIYLrjkGzU.js\"></script></head>\n<body>\n<pre>Error: connect ECONNREFUSED 10.0.14.157:80<br> &nbsp; &nbsp;at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1571:16)</pre>\n</body>\n</html>\n",
+      "status": 500,
+      "headers": {}
+    },
+    "request": {
+      "query": "\n    query drawQuery(\n      $first: Int!\n      $lastId: String\n      $prizeVaultAddress: String!\n      $beforeTimestamp: Int!\n    ) {\n      accounts(first: $first, where: { id_gt: $lastId, prizeVault_: { id: $prizeVaultAddress } }) {\n        id\n        user {\n          address\n        }\n\n        balanceUpdatesBeforeTimestamp: balanceUpdates(\n          orderBy: timestamp\n          orderDirection: desc\n          first: 1\n          where: { timestamp_lte: $beforeTimestamp }\n        ) {\n          delegateBalance\n        }\n      }\n    }\n  ",
+      "variables": {
+        "prizeVaultAddress": "0xfaa0a8f7a7621a0add12ddcfe940b3c634bd088e",
+        "first": 1000,
+        "lastId": "",
+        "beforeTimestamp": 1712579456
+      }
+    }
+  }
+}
