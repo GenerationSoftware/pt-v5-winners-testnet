@@ -42,7 +42,7 @@ jobs:
       # 1. Install
       - name: Install PoolTogether V5 CLI
         run: |
-          npm install -g @generationsoftware/pt-v5-cli@1.1.0-beta.14
+          npm install -g @generationsoftware/pt-v5-cli@1.1.0-beta.15
           echo "$(npm -g bin)" >> $GITHUB_PATH
           
       # 2. Compute JSON input files (vault accounts)
@@ -52,7 +52,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ./foundry-winner-calc
-          run_command: ptv5 utils vaultAccounts -o ./vaultAccounts -p 0x595806bc53dd4be760ebbe63d78931a3601aa04b -c 11155420
+          run_command: ptv5 utils vaultAccounts -o ./vaultAccounts -p 0x23fc16532b025d2ebf73614b730793715af56ec7 -c 11155420
 
       # 3. Install package deps, build contracts
       - name: Install deps and compile
@@ -91,7 +91,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ./winners
-          run_command: ptv5 utils concatWinners -o ./vaultAccounts -p 0x595806bc53dd4be760ebbe63d78931a3601aa04b -c 11155420
+          run_command: ptv5 utils concatWinners -o ./vaultAccounts -p 0x23fc16532b025d2ebf73614b730793715af56ec7 -c 11155420
 
       # 7. Commit
       - name: Commit Optimism Sepolia
