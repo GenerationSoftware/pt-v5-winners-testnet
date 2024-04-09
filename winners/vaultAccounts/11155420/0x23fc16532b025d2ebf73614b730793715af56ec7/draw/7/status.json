@@ -1,0 +1,12 @@
+{
+  "status": "FAILURE",
+  "createdAt": 1712670599679,
+  "updatedAt": 1712670604012,
+  "runtime": 5,
+  "error": {
+    "errno": -2,
+    "code": "ENOENT",
+    "syscall": "open",
+    "path": "./vaultAccounts/11155420/0x23fc16532b025d2ebf73614b730793715af56ec7/draw/7/0x21249545298befd0064e8e9420b4f8fd8ecb5b6a.json"
+  }
+}
