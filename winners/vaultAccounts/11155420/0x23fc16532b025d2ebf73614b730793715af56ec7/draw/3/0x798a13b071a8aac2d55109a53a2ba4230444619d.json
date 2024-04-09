@@ -1,45 +1,18 @@
 {
   "winners": [
     {
-      "user": "0xbf9d89162c7FC1B04DD81B58DCe25b2b813CC027",
+      "user": "0x7E174aF3BE67E1d645552994C43AFfA6Cf8D6f38",
       "prizes": {
-        "4": [
-          252
+        "3": [
+          2
         ]
       }
     },
     {
-      "user": "0x09a4a7934de5ffb43d0Ee0B7D1d632274544F332",
+      "user": "0x252F325F9a050D5D86286dA65C0155051cb1b639",
       "prizes": {
-        "4": [
-          85
-        ]
-      }
-    },
-    {
-      "user": "0x5F892Dc8579043EFA9B1882672D20B302F26B2a4",
-      "prizes": {
-        "4": [
-          12
-        ]
-      }
-    },
-    {
-      "user": "0xeF9f3b62B89145C6E3bb1E113BBC170a4F604115",
-      "prizes": {
-        "4": [
-          64
-        ]
-      }
-    },
-    {
-      "user": "0xdeeFda5B7C833d18c8982E3f3Ab9c887923bd2eC",
-      "prizes": {
-        "4": [
-          85
-        ],
-        "5": [
-          237
+        "3": [
+          26
         ]
       }
     },
@@ -277,6 +250,17 @@
       }
     },
     {
+      "user": "0xdeeFda5B7C833d18c8982E3f3Ab9c887923bd2eC",
+      "prizes": {
+        "4": [
+          85
+        ],
+        "5": [
+          237
+        ]
+      }
+    },
+    {
       "user": "0x50629Bac6CfAD4b4f02afd7d9f06E342eFb1AF79",
       "prizes": {
         "5": [
@@ -317,18 +301,34 @@
       }
     },
     {
-      "user": "0x7E174aF3BE67E1d645552994C43AFfA6Cf8D6f38",
+      "user": "0xbf9d89162c7FC1B04DD81B58DCe25b2b813CC027",
       "prizes": {
-        "3": [
-          2
+        "4": [
+          252
         ]
       }
     },
     {
-      "user": "0x252F325F9a050D5D86286dA65C0155051cb1b639",
+      "user": "0x09a4a7934de5ffb43d0Ee0B7D1d632274544F332",
       "prizes": {
-        "3": [
-          26
+        "4": [
+          85
+        ]
+      }
+    },
+    {
+      "user": "0x5F892Dc8579043EFA9B1882672D20B302F26B2a4",
+      "prizes": {
+        "4": [
+          12
+        ]
+      }
+    },
+    {
+      "user": "0xeF9f3b62B89145C6E3bb1E113BBC170a4F604115",
+      "prizes": {
+        "4": [
+          64
         ]
       }
     }
