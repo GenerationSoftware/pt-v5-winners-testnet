@@ -1,9 +1,14 @@
 name: CronJob
 on:
   schedule:
-    - cron: "10,40 * * * *" # ie. 4:10pm, 4:40pm, 5:10pm, etc.
+    - cron: "*/15 * * * *" # ie. 4:10pm, 4:25pm, 4:40pm, etc.
   push:
 env:
+  CHAIN_ID: 11155420
+  PRIZE_POOL_ADDRESS: "0x46151C11e176425864ab85363e3aF69b21EA2cf4"
+  VAULT_ACCOUNTS_DIRECTORY_NAME: "vaultAccounts"
+  OUTPUT_DIRECTORY_NAME: "winners"
+  CLI_VERSION: "1.1.0-beta.16"
   FWC_RPC_URL: ${{secrets.OPTIMISM_SEPOLIA_RPC_URL}}
   OPTIMISM_SEPOLIA_RPC_URL: ${{secrets.OPTIMISM_SEPOLIA_RPC_URL}}
   NODE_OPTIONS: "--max_old_space_size=32768"
@@ -42,7 +47,7 @@ jobs:
       # 1. Install
       - name: Install PoolTogether V5 CLI
         run: |
-          npm install -g @generationsoftware/pt-v5-cli@1.1.0-beta.16
+          npm install -g @generationsoftware/pt-v5-cli@$CLI_VERSION
           echo "$(npm -g bin)" >> $GITHUB_PATH
           
       # 2. Compute JSON input files (vault accounts)
@@ -52,7 +57,7 @@ jobs:
         continue-on-error: true
         with:
           working-directory: ./foundry-winner-calc
-          run_command: ptv5 utils vaultAccounts -o ./vaultAccounts -p 0x46151C11e176425864ab85363e3aF69b21EA2cf4 -c 11155420
+          run_command: ptv5 utils vaultAccounts -o ./$VAULT_ACCOUNTS_DIRECTORY_NAME -p $PRIZE_POOL_ADDRESS -c $CHAIN_ID
 
       # 3. Install package deps, build contracts
       - name: Install deps and compile
@@ -71,7 +76,7 @@ jobs:
         run: |
           {
             echo 'FILELIST<<EOF'
-            find ./vaultAccounts -type f -name '0x*.json' -print
+            find ./$VAULT_ACCOUNTS_DIRECTORY_NAME -type f -name '0x*.json' -print
             echo EOF
           } >> "$GITHUB_ENV"
       
@@ -82,7 +87,7 @@ jobs:
         run: |
           for i in $FILELIST; do
             echo "Processing: ${i}"
-            node index.js ${i} ../winners/${i}
+            node index.js ${i} ../$OUTPUT_DIRECTORY_NAME/${i}
           done
 
       # 6. Concat winner output files into 1 winners.json file
@@ -90,8 +95,8 @@ jobs:
         uses: chuckbergeron/executable-wrapper@f94b435740d6b958c2d7eb76c77657e761819cfe
         continue-on-error: true
         with:
-          working-directory: ./winners
-          run_command: ptv5 utils concatWinners -o ./vaultAccounts -p 0x46151C11e176425864ab85363e3aF69b21EA2cf4 -c 11155420
+          working-directory: ./$OUTPUT_DIRECTORY_NAME
+          run_command: ptv5 utils concatWinners -o ./$VAULT_ACCOUNTS_DIRECTORY_NAME -p $PRIZE_POOL_ADDRESS -c $CHAIN_ID
 
       # 7. Commit
       - name: Commit Optimism Sepolia
@@ -102,7 +107,7 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git pull
-          git add ./winners
+          git add ./$OUTPUT_DIRECTORY_NAME
           git commit -m "Add testnet winner results for Optimism Sepolia draw #${{steps.vaultAccountsOptimismSepolia.outputs.drawId}}"
 
       # 8. Push
