@@ -1,22 +1,12 @@
 {
-  "status": "FAILURE",
-  "createdAt": 1712827964949,
-  "updatedAt": 1712827969614,
-  "runtime": 5,
-  "error": {
-    "response": {
-      "error": "",
-      "status": 504,
-      "headers": {}
-    },
-    "request": {
-      "query": "\n    query drawQuery(\n      $first: Int!\n      $lastId: String\n      $prizeVaultAddress: String!\n      $beforeTimestamp: Int!\n    ) {\n      accounts(first: $first, where: { id_gt: $lastId, prizeVault_: { id: $prizeVaultAddress } }) {\n        id\n        user {\n          address\n        }\n\n        balanceUpdatesBeforeTimestamp: balanceUpdates(\n          orderBy: timestamp\n          orderDirection: desc\n          first: 1\n          where: { timestamp_lte: $beforeTimestamp }\n        ) {\n          delegateBalance\n        }\n      }\n    }\n  ",
-      "variables": {
-        "prizeVaultAddress": "0xc1f6251c8b8ca9ea535dd297cb9cbfe49efa6bb0",
-        "first": 1000,
-        "lastId": "",
-        "beforeTimestamp": 1712826154
-      }
-    }
+  "status": "SUCCESS",
+  "createdAt": 1712828845703,
+  "updatedAt": 1712828847821,
+  "runtime": 3,
+  "meta": {
+    "numVaults": 6,
+    "numTiers": 4,
+    "numPrizeIndices": 85,
+    "numAccounts": 1897
   }
 }
