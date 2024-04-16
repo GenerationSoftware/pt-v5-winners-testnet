@@ -1,14 +1,6 @@
 {
   "0x33335296c9b020ca3252e4953c11decfdce816b8": [
     {
-      "user": "0x1A7F61616683584fc13a753eeb358c96f2C16467",
-      "prizes": {
-        "2": [
-          14
-        ]
-      }
-    },
-    {
       "user": "0x9C6498847736Aa95fF8Adc90595963d061812255",
       "prizes": {
         "4": [
@@ -3683,100 +3675,17 @@
           952
         ]
       }
+    },
+    {
+      "user": "0x1A7F61616683584fc13a753eeb358c96f2C16467",
+      "prizes": {
+        "2": [
+          14
+        ]
+      }
     }
   ],
   "0x75b2f4b3ec5adf7077f928992524cc547e74f768": [
-    {
-      "user": "0xA1b630B36a20aB79c30fb74586D4d5139e3613Fb",
-      "prizes": {
-        "4": [
-          48
-        ]
-      }
-    },
-    {
-      "user": "0x89DD4d6fF047b4e6c5F2fca0fbB7F4fF9B9e60B3",
-      "prizes": {
-        "4": [
-          72
-        ]
-      }
-    },
-    {
-      "user": "0xe7ceC7C75056f475539F3c148EBc51c40Ec2C009",
-      "prizes": {
-        "4": [
-          8
-        ]
-      }
-    },
-    {
-      "user": "0xd05Dc17CB87C96726bbAfBB67518b6Aa83343162",
-      "prizes": {
-        "4": [
-          119
-        ]
-      }
-    },
-    {
-      "user": "0x858e1990177C640BE83cBc80F5bb828E74dE69dd",
-      "prizes": {
-        "4": [
-          65
-        ],
-        "5": [
-          8
-        ]
-      }
-    },
-    {
-      "user": "0x9cA6899E5F02940E45eaF1418C5Ef8DfA03900Bb",
-      "prizes": {
-        "4": [
-          211
-        ]
-      }
-    },
-    {
-      "user": "0x97d453Be02C775Ab7a6882be280b42a2D1961759",
-      "prizes": {
-        "4": [
-          221
-        ]
-      }
-    },
-    {
-      "user": "0xe68E4db39d2b1e502e386E1D1211cceEe03E3224",
-      "prizes": {
-        "4": [
-          7
-        ]
-      }
-    },
-    {
-      "user": "0xD7E13FD2567DD86D9DFF9c8b0bDb3a3D0DAA83be",
-      "prizes": {
-        "4": [
-          247
-        ]
-      }
-    },
-    {
-      "user": "0x703e63AcB412fce4aCEF8b4F05E940003A16cBCF",
-      "prizes": {
-        "4": [
-          111
-        ]
-      }
-    },
-    {
-      "user": "0x7adA07a9c3edE1942786FdA448257b97041Bc4AC",
-      "prizes": {
-        "4": [
-          94
-        ]
-      }
-    },
     {
       "user": "0xb02D3B966D15b2732e9B9a7d351CFD24f593C591",
       "prizes": {
@@ -4022,6 +3931,17 @@
       "prizes": {
         "5": [
           321
+        ]
+      }
+    },
+    {
+      "user": "0x858e1990177C640BE83cBc80F5bb828E74dE69dd",
+      "prizes": {
+        "4": [
+          65
+        ],
+        "5": [
+          8
         ]
       }
     },
@@ -4370,6 +4290,86 @@
       "prizes": {
         "3": [
           7
+        ]
+      }
+    },
+    {
+      "user": "0xA1b630B36a20aB79c30fb74586D4d5139e3613Fb",
+      "prizes": {
+        "4": [
+          48
+        ]
+      }
+    },
+    {
+      "user": "0x89DD4d6fF047b4e6c5F2fca0fbB7F4fF9B9e60B3",
+      "prizes": {
+        "4": [
+          72
+        ]
+      }
+    },
+    {
+      "user": "0xe7ceC7C75056f475539F3c148EBc51c40Ec2C009",
+      "prizes": {
+        "4": [
+          8
+        ]
+      }
+    },
+    {
+      "user": "0xd05Dc17CB87C96726bbAfBB67518b6Aa83343162",
+      "prizes": {
+        "4": [
+          119
+        ]
+      }
+    },
+    {
+      "user": "0x9cA6899E5F02940E45eaF1418C5Ef8DfA03900Bb",
+      "prizes": {
+        "4": [
+          211
+        ]
+      }
+    },
+    {
+      "user": "0x97d453Be02C775Ab7a6882be280b42a2D1961759",
+      "prizes": {
+        "4": [
+          221
+        ]
+      }
+    },
+    {
+      "user": "0xe68E4db39d2b1e502e386E1D1211cceEe03E3224",
+      "prizes": {
+        "4": [
+          7
+        ]
+      }
+    },
+    {
+      "user": "0xD7E13FD2567DD86D9DFF9c8b0bDb3a3D0DAA83be",
+      "prizes": {
+        "4": [
+          247
+        ]
+      }
+    },
+    {
+      "user": "0x703e63AcB412fce4aCEF8b4F05E940003A16cBCF",
+      "prizes": {
+        "4": [
+          111
+        ]
+      }
+    },
+    {
+      "user": "0x7adA07a9c3edE1942786FdA448257b97041Bc4AC",
+      "prizes": {
+        "4": [
+          94
         ]
       }
     }
