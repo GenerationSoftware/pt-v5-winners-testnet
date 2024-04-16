@@ -1,12 +1,12 @@
 {
-  "status": "FAILURE",
-  "createdAt": 1713303013470,
-  "updatedAt": 1713303021007,
-  "runtime": 8,
-  "error": {
-    "errno": -2,
-    "code": "ENOENT",
-    "syscall": "open",
-    "path": "./vaultAccounts/11155420/0x9f594ba8a838d41e7781bfa2aea42702e216af5a/draw/24/0x33335296c9b020ca3252e4953c11decfdce816b8.json"
+  "status": "SUCCESS",
+  "createdAt": 1713303786797,
+  "updatedAt": 1713303790756,
+  "runtime": 4,
+  "meta": {
+    "numVaults": 6,
+    "numTiers": 7,
+    "numPrizeIndices": 5461,
+    "numAccounts": 6495
   }
 }
