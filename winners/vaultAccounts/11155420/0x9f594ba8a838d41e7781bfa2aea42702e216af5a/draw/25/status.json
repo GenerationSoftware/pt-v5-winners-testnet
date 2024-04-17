@@ -1,0 +1,16 @@
+{
+  "status": "FAILURE",
+  "createdAt": 1713315448755,
+  "updatedAt": 1713315510333,
+  "runtime": 62,
+  "error": {
+    "response": {
+      "error": "<html>\n<head><title>504 Gateway Time-out</title><script src=\"/cdn-cgi/apps/head/a-7iaLT0SRdb_kvxGKIYLrjkGzU.js\"></script></head>\n<body>\n<center><h1>504 Gateway Time-out</h1></center>\n<hr><center>nginx</center>\n</body>\n</html>\n",
+      "status": 504,
+      "headers": {}
+    },
+    "request": {
+      "query": "\n    {\n      prizeVaults {\n        id\n      }\n    }\n  "
+    }
+  }
+}
