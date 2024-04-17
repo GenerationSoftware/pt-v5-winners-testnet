@@ -1,16 +1,12 @@
 {
-  "status": "FAILURE",
-  "createdAt": 1713315448755,
-  "updatedAt": 1713315510333,
-  "runtime": 62,
-  "error": {
-    "response": {
-      "error": "<html>\n<head><title>504 Gateway Time-out</title><script src=\"/cdn-cgi/apps/head/a-7iaLT0SRdb_kvxGKIYLrjkGzU.js\"></script></head>\n<body>\n<center><h1>504 Gateway Time-out</h1></center>\n<hr><center>nginx</center>\n</body>\n</html>\n",
-      "status": 504,
-      "headers": {}
-    },
-    "request": {
-      "query": "\n    {\n      prizeVaults {\n        id\n      }\n    }\n  "
-    }
+  "status": "SUCCESS",
+  "createdAt": 1713317110477,
+  "updatedAt": 1713317114802,
+  "runtime": 5,
+  "meta": {
+    "numVaults": 6,
+    "numTiers": 7,
+    "numPrizeIndices": 5461,
+    "numAccounts": 6504
   }
 }
