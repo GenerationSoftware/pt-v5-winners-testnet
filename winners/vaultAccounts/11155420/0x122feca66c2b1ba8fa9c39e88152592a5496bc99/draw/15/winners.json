@@ -499,38 +499,6 @@
       }
     },
     {
-      "user": "0xefdB0BE5ABFB2E558a251Bd1E1DE39dF54e8b5e3",
-      "prizes": {
-        "2": [
-          2
-        ]
-      }
-    },
-    {
-      "user": "0xCfbdcEA60B49c8cFff0fCAc83dB1dE14b52d9bcA",
-      "prizes": {
-        "2": [
-          15
-        ]
-      }
-    },
-    {
-      "user": "0x674aCB99AEF2Cf4675244a184eb8ca4Cb0728804",
-      "prizes": {
-        "2": [
-          12
-        ]
-      }
-    },
-    {
-      "user": "0x778064B35a61f054eA02b73896cf498647F76d05",
-      "prizes": {
-        "2": [
-          11
-        ]
-      }
-    },
-    {
       "user": "0x3b8a9D61F52d5F4Dc294d1Da91234D81a801B3BF",
       "prizes": {
         "3": [
@@ -639,6 +607,38 @@
       "prizes": {
         "3": [
           49
+        ]
+      }
+    },
+    {
+      "user": "0xefdB0BE5ABFB2E558a251Bd1E1DE39dF54e8b5e3",
+      "prizes": {
+        "2": [
+          2
+        ]
+      }
+    },
+    {
+      "user": "0xCfbdcEA60B49c8cFff0fCAc83dB1dE14b52d9bcA",
+      "prizes": {
+        "2": [
+          15
+        ]
+      }
+    },
+    {
+      "user": "0x674aCB99AEF2Cf4675244a184eb8ca4Cb0728804",
+      "prizes": {
+        "2": [
+          12
+        ]
+      }
+    },
+    {
+      "user": "0x778064B35a61f054eA02b73896cf498647F76d05",
+      "prizes": {
+        "2": [
+          11
         ]
       }
     }
