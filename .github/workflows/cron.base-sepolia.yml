@@ -1,7 +1,7 @@
 name: CronJob Base Sepolia
 on:
   schedule:
-    - cron: "*/15 * * * *" # ie. 4:10pm, 4:25pm, 4:40pm, etc.
+    - cron: "*/90 * * * *" # ie. 4:00pm, 5:30pm, 7:00pm, etc.
   push:
 env:
   CHAIN_ID: 84532
